@@ -20,7 +20,7 @@ namespace WpfApp.Models
                 {
                     throw new ArgumentException("Nome é obrigatório");
                 }
-                _nome = Nome;
+                _nome = value;
                 OnPropertyChanged();
             }
         }
@@ -34,7 +34,7 @@ namespace WpfApp.Models
                 {
                     throw new ArgumentException("Código é obrigatório");
                 }
-                _codigo = Codigo;
+                _codigo = value;
                 OnPropertyChanged();
             }
         }
@@ -57,7 +57,7 @@ namespace WpfApp.Models
 
         protected virtual void OnPropertyChanged([CallerMemberName] string property = null)
         {
-            PropertyChanged.Invoke(this, new PropertyChangedEventArgs(property));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
         }
     }
 }

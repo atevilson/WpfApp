@@ -73,7 +73,7 @@ namespace WpfApp.Models
 
         public virtual void OnPropertyChanged([CallerMemberName] string nome = null)
         {
-            PropertyChanged.Invoke(this, new PropertyChangedEventArgs(nome));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nome));
         }
     }
 }
