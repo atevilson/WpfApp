@@ -1,0 +1,20 @@
+[
+  {
+    "Id": 1,
+    "Nome": "Atevilson Freitas",
+    "Cpf": "00100100111",
+    "Endereco": "Rua Pio. Lau. Tav. 001"
+  },
+  {
+    "Id": 2,
+    "Nome": "Carmen Diana",
+    "Cpf": "00200200222",
+    "Endereco": null
+  },
+  {
+    "Id": 3,
+    "Nome": "Erick Matheus",
+    "Cpf": "00300300333",
+    "Endereco": null
+  }
+]

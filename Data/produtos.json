@@ -1,0 +1,20 @@
+[
+  {
+    "Id": 1,
+    "Nome": "Bebe Tubarão",
+    "Codigo": 1,
+    "Valor": 50.00
+  },
+  {
+    "Id": 2,
+    "Nome": "PS5 Slim",
+    "Codigo": 2,
+    "Valor": 3850.00
+  },
+  {
+    "Id": 3,
+    "Nome": "Maquiagem",
+    "Codigo": 3,
+    "Valor": 50.00
+  }
+]
