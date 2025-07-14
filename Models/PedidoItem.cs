@@ -19,6 +19,8 @@ namespace WpfApp.Models
             set
             {
                 _produto = value ?? throw new ArgumentNullException(nameof(Produto));
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(Subtotal));
             }
         }
 
@@ -28,13 +30,15 @@ namespace WpfApp.Models
             set
             {
                 _quantidade = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(Subtotal));
             }
         }
 
         public decimal Subtotal => Produto != null ? Produto.Valor * Quantidade : 0;
 
         public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged([CallerMemberName] string nome = null) =>
+        protected void OnPropertyChanged([CallerMemberName] string nome = null) =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nome));
 
         public PedidoItem(Produto produto, int quantidade)

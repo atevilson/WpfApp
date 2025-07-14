@@ -3,12 +3,83 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:WpfApp.Views"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="CadastroDePessoas">
 
-    <Grid>
-        
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="2*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="0,0,0,10">
+            <TextBlock Text="Nome:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+            <TextBox
+        Width="200"
+        Text="{Binding NomeFiltro, UpdateSourceTrigger=PropertyChanged}"
+        Margin="0,0,10,0"/>
+
+            <TextBlock Text="CPF:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+            <TextBox
+        Width="120"
+        Text="{Binding CpfFiltro, UpdateSourceTrigger=PropertyChanged}"
+        Margin="0,0,10,0"/>
+
+            <Button
+        Content="Filtrar"
+        Command="{Binding FiltrarCommand}"
+        Margin="0,0,5,0"/>
+            <Button
+        Content="Limpar"
+        Command="{Binding LimparFiltroCommand}"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0,0,0,10">
+            <Button Content="Incluir" Command="{Binding IncluirPessoaCommand}" Width="80" />
+            <Button Content="Salvar" Command="{Binding SalvarPessoaCommand}" Width="80" Margin="5,0,0,0" />
+            <Button Content="Excluir" Command="{Binding ExcluirPessoaCommand}" Width="80" Margin="5,0,0,0" />
+            <Button Content="Incluir Pedido" Command="{Binding IncluirPedidoCommand}" Width="100" Margin="20,0,0,0" />
+        </StackPanel>
+
+        <DataGrid Grid.Row="2" ItemsSource="{Binding Pessoas}"
+                  SelectedItem="{Binding PessoaSelecionada}"
+                  AutoGenerateColumns="False" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50" IsReadOnly="True" />
+                <DataGridTextColumn Header="Nome" Binding="{Binding Nome}" Width="*" />
+                <DataGridTextColumn Header="CPF" Binding="{Binding Cpf}" Width="150" />
+                <DataGridTextColumn Header="Endereço" Binding="{Binding Endereco}" Width="200" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <TextBlock Grid.Row="3" Text="Pedidos da Pessoa:" FontWeight="Bold" Margin="0,10,0,5" />
+
+        <DataGrid Grid.Row="4" ItemsSource="{Binding PedidosDaPessoa}" 
+                  AutoGenerateColumns="False" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Data da Venda" Binding="{Binding DataDaVenda, StringFormat=d}" Width="120" />
+                <DataGridTextColumn Header="Valor Total" Binding="{Binding ValorTotal, StringFormat=C}" Width="100" />
+                <DataGridTextColumn Header="Forma de Pagamento" Binding="{Binding FormaDePagamento}" Width="120" />
+                <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="100" />
+                <DataGridTemplateColumn Header="Ações" Width="150">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="Pago" Command="{Binding DataContext.MarcarPagoCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding}" Margin="0,0,5,0"/>
+                                <Button Content="Enviado" Command="{Binding DataContext.MarcarEnviadoCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding}" Margin="0,0,5,0"/>
+                                <Button Content="Recebido" Command="{Binding DataContext.MarcarRecebidoCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Page>

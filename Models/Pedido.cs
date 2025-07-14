@@ -27,6 +27,13 @@ namespace WpfApp.Models
         private ObservableCollection<PedidoItem> _produtos;
         private FormaDePagamento _formaDePagamento;
         private Status _status;
+
+        public Pedido()
+        {
+            DataDaVenda = DateTime.Now;
+            Status = Status.Pendente;
+            _produtos = new ObservableCollection<PedidoItem>();
+        }
         public int Id { get; }
 
         public Pessoa Pessoa

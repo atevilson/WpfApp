@@ -9,16 +9,12 @@ namespace WpfApp.Models
         private string _nome;
         private string _cpf;
 
-        public int Id { get; }
+        public int Id { get; set; }
         public string Nome
         {
             get => _nome;
             set
             {
-                if(string.IsNullOrEmpty(value))
-                {
-                    throw new ArgumentException("Nome é obrigatório");
-                }
                 _nome = value;
                 OnPropertyChanged();
             }
@@ -28,16 +24,12 @@ namespace WpfApp.Models
             get => _cpf;
             set
             {
-                if (string.IsNullOrEmpty(value))
-                {
-                    throw new ArgumentException("CPF é obrigatório");
-                }
                 _cpf = value;
                 OnPropertyChanged();
 
             }
         }
-        public string Endereco;
+        public string Endereco { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
