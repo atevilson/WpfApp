@@ -1,28 +1,39 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using WpfApp.Services;
+using WpfApp.ViewModels;
+using WpfApp.Views;
 
 namespace WpfApp
 {
-    /// <summary>
-    /// Interação lógica para MainWindow.xam
-    /// </summary>
     public partial class MainWindow : Window
     {
+
+        private CadastroDePedidosViewModel _pedidoVm;
         public MainWindow()
         {
             InitializeComponent();
+
+            var mydoc = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            var dataDir = Path.Combine(mydoc, "WpfApp", "Data");
+
+            var pessoaSvc = new JsonPessoaService(dataDir);
+            var produtoSvc = new JsonProdutoService(dataDir);
+
+            var pessoaVm = new CadastroDePessoaViewModel(pessoaSvc);
+            var produtoVm = new CadastroDeProdutoViewModel(produtoSvc);
+            _pedidoVm = new CadastroDePedidosViewModel(pessoaSvc, produtoSvc);
+
+            PessoasView.DataContext = pessoaVm;
+            ProdutosView.DataContext = produtoVm;
+            PedidosView.DataContext = _pedidoVm;
+
+            pessoaVm.RequestIncluirPedido += pessoa =>
+            {
+                MainTabControl.SelectedIndex = 2;
+                _pedidoVm.PessoaSelecionada = pessoa;
+            };
         }
     }
 }

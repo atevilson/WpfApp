@@ -34,7 +34,7 @@ namespace WpfApp.Models
             Status = Status.Pendente;
             _produtos = new ObservableCollection<PedidoItem>();
         }
-        public int Id { get; }
+        public int Id { get; set; }
 
         public Pessoa Pessoa
         {

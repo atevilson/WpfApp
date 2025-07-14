@@ -166,9 +166,13 @@ namespace WpfApp.ViewModels
                 PedidosDaPessoa.Add(pedido);
         }
 
+        public event Action<Pessoa> RequestIncluirPedido;
+
         private void IncluirPedido()
         {
             // preciso intetgrar ao criar a tela de pedidos (fazer nav. de tela de pedido passando a var PessoaSelecionada
+            if (PessoaSelecionada == null) return;
+            RequestIncluirPedido?.Invoke(PessoaSelecionada);
         }
 
         private void AtualizarStatus(Pedido pedido, Status novoStatus)

@@ -1,9 +1,7 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Xml;
 using WpfApp.Models;
 using WpfApp.Services.contrato;
 using Formatting = Newtonsoft.Json.Formatting;
@@ -75,9 +73,7 @@ namespace WpfApp.Services
         {
             if (pedido.Id == 0)
             {
-                var prop = typeof(Pedido).GetProperty("Id");
-                prop.SetValue(pedido, _nextPedidoId);
-                _nextPedidoId++;
+                pedido.Id = _nextPedidoId++;
                 _pedidos.Add(pedido);
             }
             else
@@ -90,9 +86,10 @@ namespace WpfApp.Services
 
         private void Persist()
         {
-            File.WriteAllText(_pessoasFile, JsonConvert.SerializeObject(_pessoas, Formatting.Indented));
-            var pedidosFile = Path.Combine(Path.GetDirectoryName(_pedidosFile), "pedidos.json");
-            File.WriteAllText(pedidosFile, JsonConvert.SerializeObject(_pedidos, Formatting.Indented));
+            File.WriteAllText(_pessoasFile,
+                JsonConvert.SerializeObject(_pessoas, Formatting.Indented));
+            File.WriteAllText(_pedidosFile,
+                JsonConvert.SerializeObject(_pedidos, Formatting.Indented));
         }
     }
 }

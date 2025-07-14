@@ -10,16 +10,12 @@ namespace WpfApp.Models
         private int _codigo;
         private decimal _valor;
 
-        public int Id { get; }
+        public int Id { get; set; }
         public string Nome
         {
             get => _nome;
             set
             {
-                if(string.IsNullOrEmpty(value))
-                {
-                    throw new ArgumentException("Nome é obrigatório");
-                }
                 _nome = value;
                 OnPropertyChanged();
             }
@@ -30,10 +26,6 @@ namespace WpfApp.Models
             get => _codigo;
             set
             {
-                if (value <= 0)
-                {
-                    throw new ArgumentException("Código é obrigatório");
-                }
                 _codigo = value;
                 OnPropertyChanged();
             }
@@ -43,10 +35,6 @@ namespace WpfApp.Models
             get => _valor;
             set
             {
-                if (value <= 0)
-                {
-                    throw new ArgumentException("Valor é obrigatório");
-                }
                 _valor = value;
                 OnPropertyChanged();
             }

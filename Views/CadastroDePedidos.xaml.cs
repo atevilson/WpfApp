@@ -16,18 +16,13 @@ using System.Windows.Shapes;
 namespace WpfApp.Views
 {
     /// <summary>
-    /// Interação lógica para CadastroDePessoas.xam
+    /// Interação lógica para CadastroDePedidos.xam
     /// </summary>
-    public partial class CadastroDePessoas : UserControl
+    public partial class CadastroDePedidos : UserControl
     {
-        public CadastroDePessoas()
+        public CadastroDePedidos()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
