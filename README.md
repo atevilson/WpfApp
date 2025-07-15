@@ -20,7 +20,8 @@ WpfApp/
 ├── Models/             # Classes de domínio (Pessoa, Produto, Pedido, PedidoItem)
 ├── Views/              # UserControls XAML (CadastroDePessoas, CadastroDeProdutos, CadastroDePedidos)
 ├── ViewModels/         # Lógica de apresentação (MVVM)
-├── Services/           # Serviços de persistência (JsonPessoaService, JsonProdutoService)
+├── Services/# Serviços de persistência (JsonPessoaService, JsonProdutoService)
+    |── contrato
 ├── Data/               # Arquivos JSON gerados em runtime
 ├── Helpers/            # Helpers (EnumHelpers, RelayCommand)
 ├── App.xaml            # Configuração de inicialização
@@ -32,12 +33,12 @@ WpfApp/
 
 1. **Pré-requisitos**
 
-   * Visual Studio 2015 ou superior com suporte a .NET Framework 4.6
+   * Visual Studio 2019 ou superior com suporte a .NET Framework 4.6
 
 2. **Clone o repositório**
 
 ```bash
-git clone <url-do-repositorio>
+git clone https://github.com/atevilson/WpfApp.git
 cd WpfApp
 ```
 
@@ -64,7 +65,7 @@ cd WpfApp
 
 ---
 
-### Autor
+## Autor
 
 ---
  <sub><b>Atevilson Freitas</b></sub></a> <a href="">🧑‍💻</a>
